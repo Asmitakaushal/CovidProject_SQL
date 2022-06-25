@@ -2,3 +2,35 @@
 Covid 19 Data Exploration 
 Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 */
+
+
+select * 
+from CovidProject..CovidDeaths$
+order by 3,4
+
+--select * 
+--from CovidProject..CovidVaccinations$
+--order by 3,4
+
+Select location, date,population,total_cases, new_cases, total_deaths
+from CovidProject..CovidDeaths$
+order by 1,2
+
+select sum (total_deaths/total_cases) AS Death_percentage, location
+from CovidProject..CovidDeaths$
+group by location
+order by location
+
+Select Location, total_cases,total_deaths, sum (total_deaths/total_cases)*100 as DeathPercentage
+from CovidProject..CovidDeaths$
+group by location , total_cases , total_deaths
+order by 1,2
+
+Select Location, date, total_cases,total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
+From CovidProject..CovidDeaths$
+WHERE location like '%India%'
+and continent is not null 
+order by 1,2
+
+
+
